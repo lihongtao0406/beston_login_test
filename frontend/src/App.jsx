@@ -12,6 +12,8 @@ import ResetPwd from './pages/ResetPassword';
 import AlertDialog from './pages/AlertDialog';
 import DashBoard from './pages/DashBoard';
 import Test from './pages/test';
+import Update from './pages/Update';
+import SuccessfulUpdate from './pages/SuccessfulUpdate';
 
 function App () {
   return (
@@ -22,6 +24,8 @@ function App () {
         <Route path="/resetpwd" element={<ResetPwd />} />
         <Route path="/alert" element={<AlertDialog />} />
         <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/update" element={<Update />} />
+        <Route path="/successfulupdate" element={<SuccessfulUpdate />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </Router>

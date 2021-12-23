@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 /* eslint-disable */
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -14,36 +14,49 @@ import AuthFooter from '../components/AuthFooter';
 // assets
 
 // ================================|| AUTH3 - LOGIN ||================================ //
-
-const ResetPassword = () => {
-    const BASE_URL = 'https://loginapi1.herokuapp.com';
-    const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const BASE_URL = 'https://loginapi1.herokuapp.com';
+const Update = () => {
     const theme = useTheme();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-    const [email,setEmail]=useState();
+    const [email,setEmail]=useState('');
+    const [newpassword,setNewPassword]=useState('');
+    const [c_password,setConfirmNewPassword]=useState('');
+    const [code,setCode]=useState('');
     const [err,setErrMsg]=useState();
-    const [open,setOpen]=useState(false);
     const navigate = useNavigate();
     const handleSubmit = async () =>{
-        if(email == ''||email==null){
-            setErrMsg('Please fill in your registered email address');
-            setOpen(true);
-        }else if (!reg.test(email) && email.length>0){
-            setErrMsg('Please enter a valid email address');
-            setOpen(true);
+        if(newpassword != c_password){
+            setErrMsg('Password and Confirm Password must match!');
+
+        }else if (newpassword ===''|| c_password === ''){
+            setErrMsg('Password or Confirm Password can not be empty!');
+        }else if (code === '' || code.length != 4){
+            setErrMsg('Invalid Verification Code!');
         }else{
             setErrMsg('');
-            setOpen(false);
-            localStorage.setItem('email',email);
-            navigate('/alert');
-            const body = { email };
-            const resp = await fetch(`${BASE_URL}/api/forget-password`,{
+            const body = { 
+                "email": email,
+                "password": newpassword,
+                "c_password": c_password,
+                "token": code
+             };
+            const resp = await fetch(`${BASE_URL}/api/reset-password`,{
                 body: JSON.stringify(body),
                 method:'POST',
                 headers:{'Content-Type':'application/json'},
-            });    
+            });
+            if (resp.status === 200) {
+                navigate('/successfulupdate');
+            }
+            else{
+                setErrMsg('Failed to Update Password, please check your verification code!');
+            }
         }  
     }
+
+    useEffect(() => {
+        setEmail(localStorage.getItem('email'));
+      }, []);
     return (
         <AuthWrapper1>
             <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
@@ -71,7 +84,7 @@ const ResetPassword = () => {
                                                         gutterBottom
                                                         variant='h5'
                                                     >
-                                                        Forget your password?
+                                                        Reset your password
                                                     </Typography>
                                                     <Typography
                                                         variant="caption"
@@ -89,19 +102,41 @@ const ResetPassword = () => {
                                     <Grid item xs={25} sx={{marginBottom:1}}>
                                         <Divider />
                                     </Grid>
-                                    <Collapse in={open}>
-                                        <Alert severity="warning">
-                                            <AlertTitle><strong>To continue..</strong></AlertTitle>
-                                            {err}
-                                        </Alert>
-                                    </Collapse>
+                                    <Grid  item xs={33}>
+                                        <TextField 
+                                        disabled
+                                        fullWidth 
+                                        id="email-outlined-basic" 
+                                        label="Email" 
+                                        variant="outlined" 
+                                        value={email}
+                                        />
+                                    </Grid>
                                     <Grid  item xs={33}>
                                         <TextField 
                                         fullWidth 
-                                        id="outlined-basic" 
-                                        label="Email" 
+                                        id="password-outlined-basic" 
+                                        label="New Password" 
                                         variant="outlined" 
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        onChange={(e) => setNewPassword(e.target.value)}
+                                        />
+                                    </Grid>
+                                    <Grid  item xs={33}>
+                                        <TextField 
+                                        fullWidth 
+                                        id="c_password-outlined-basic" 
+                                        label="Confirm New Password" 
+                                        variant="outlined" 
+                                        onChange={(e) => setConfirmNewPassword(e.target.value)}
+                                        />
+                                    </Grid>
+                                    <Grid  item xs={33}>
+                                        <TextField 
+                                        fullWidth 
+                                        id="verify-outlined-basic" 
+                                        label="Verification Code" 
+                                        variant="outlined" 
+                                        onChange={(e) => setCode(e.target.value)}
                                         />
                                         <FormHelperText sx={{color:'red'}}>{err}</FormHelperText>
                                     </Grid>
@@ -130,4 +165,4 @@ const ResetPassword = () => {
     );
 };
 
-export default ResetPassword;
+export default Update;
