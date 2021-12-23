@@ -63,7 +63,7 @@ yarn start
 Open terminal and direct to backend directory to input
 
 ```
-php aritsan serve
+php artisan serve
 ```
 
 After that backend api will be successfully started
