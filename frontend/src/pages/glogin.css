@@ -1,0 +1,15 @@
+.gsignin{
+    width: 100%;
+    justify-content: center;
+}
+.gsignin :hover{
+    color:black;
+}
+
+.gsignout{
+   
+    justify-content: center;
+}
+.gsignout :hover{
+    color:black;
+}
