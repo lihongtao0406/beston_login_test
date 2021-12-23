@@ -6,18 +6,20 @@ This is a login web application which frontend is developed by React and backend
 To get started, simply dowload this repo.
 
 ## Preview
-*Demo https://bestonlogin.herokuapp.com/
+-[Demo](https://bestonlogin.herokuapp.com/) 
 
 ## Table of Contents
 
  * [Getting Started](#getting-started)
  * [Frontend Technology Stack](#frontend-technology-stack)
  * [Backend Technology Stack](#backend-technology-stack)
+ * [Frontend Run](#frontend-run)
+ * [Backend Run](#backend-run)
  * [Author](#author)
  * [Issues?](#issues)
  * [License](#license)
  * [Requirments](#requirments)
- * [Follow us](#follow-us)
+
 
 ## Getting Started
 
@@ -42,6 +44,29 @@ git clone https://github.com/lihongtao0406/beston_login_test.git
 -XAMPP 
 -REST Api
 -Mysql
+
+## Frontend Run
+
+Open terminal and direct to frontend directory to input
+
+```
+yarn install
+```
+
+After that to start frontend serve
+
+```
+yarn start
+```
+## Backend Run
+
+Open terminal and direct to backend directory to input
+
+```
+php aritsan serve
+```
+
+After that backend api will be successfully started
 
 ## Author
 
