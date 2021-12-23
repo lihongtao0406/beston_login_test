@@ -6,7 +6,7 @@ This is a login web application which frontend is developed by React and backend
 To get started, simply dowload this repo.
 
 ## Preview
--[Demo](https://bestonlogin.herokuapp.com/) 
+ - [Demo](https://bestonlogin.herokuapp.com/) 
 
 ## Table of Contents
 
@@ -40,10 +40,10 @@ git clone https://github.com/lihongtao0406/beston_login_test.git
 
 ## Backend Technology Stack
 
--Laravel8 (https://laravel.com/docs/8.x/installation) & Laravel Passport(https://laravel.com/docs/8.x/passport)
--XAMPP 
--REST Api
--Mysql
+ - Laravel8 (https://laravel.com/docs/8.x/installation) & Laravel Passport(https://laravel.com/docs/8.x/passport)
+ - XAMPP 
+ - REST Api
+ - Mysql
 
 ## Frontend Run
 
@@ -82,15 +82,16 @@ Please generate a [Github issue](https://github.com/lihongtao0406/beston_login_t
  
 ## Requirments
 
--mysql version libmysql - mysqlnd 8.0.13 
--php version 8.0.13
--laravel version 8.16.1
--NodeJS version 16.8
--React version 17.0.1
--Material-ui version v5
+ - mysql version libmysql 
+ - mysqlnd 8.0.13 
+ - php version 8.0.13
+ - laravel version 8.16.1
+ - NodeJS version 16.8
+ - React version 17.0.1
+ - Material-ui version v5
 
 ## Third party API
-Google OAuth 2.0
+ - [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2)
 
 
 
