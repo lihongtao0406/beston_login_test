@@ -63,6 +63,11 @@ yarn start
 Open terminal and direct to backend directory to input
 
 ```
+composer install
+```
+After install all package, start the backend serve
+
+```
 php artisan serve
 ```
 
